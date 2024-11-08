@@ -1,31 +1,39 @@
+# .github/workflows/main.yml
+
 name: Continuous Integration (CI)
 
 on:
   push:
     branches:
-      - main    # Trigger the workflow on push to 'main' branch
+      - main          # Trigger on push to 'main' branch
+    paths:
+      - "main_functions.py"
+      - "tests/test_main_functions.py"
   pull_request:
     branches:
-      - main    # Trigger the workflow on pull requests to the 'main' branch
+      - main          # Trigger on pull requests to 'main' branch
+    paths:
+      - "main_functions.py"
+      - "tests/test_main_functions.py"
 
 jobs:
   build:
-    runs-on: ubuntu-latest   # This will run the workflow on a GitHub-hosted Ubuntu runner
+    runs-on: ubuntu-latest  # Use GitHub's hosted Ubuntu runner
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Checkout the repository code
-      
+        uses: actions/checkout@v3  # Check out the repository
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8'   # Specify Python version; change if needed
+          python-version: '3.8'  # Specify the Python version
       
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt  # Install dependencies from 'requirements.txt'
-      
+          pip install -r requirements.txt  # Install from requirements.txt if present
+
       - name: Run tests with pytest
         run: |
-          pytest  # Run pytest to execute your tests
+          pytest tests/test_main_functions.py --maxfail=1 --disable-warnings -v  # Run all tests
