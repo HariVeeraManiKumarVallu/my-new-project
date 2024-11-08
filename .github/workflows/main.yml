@@ -6,15 +6,13 @@ on:
   push:
     branches:
       - main          # Trigger on push to 'main' branch
-    paths:
-      - "main_functions.py"
-      - "tests/test_main_functions.py"
+      - main_functions.py
+      - tests/test_main_functions.py
   pull_request:
     branches:
       - main          # Trigger on pull requests to 'main' branch
-    paths:
-      - "main_functions.py"
-      - "tests/test_main_functions.py"
+      - main_functions.py
+      - tests/test_main_functions.py
 
 jobs:
   build:
