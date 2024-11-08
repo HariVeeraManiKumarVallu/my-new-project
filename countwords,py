@@ -1,0 +1,10 @@
+# count_words.py
+def count_words(text):
+    """Counts the number of words in a string."""
+    if not text.strip():
+        return 0
+    return len(text.split())
+
+def count_occurrences(text, word):
+    """Counts the occurrences of a word in a string."""
+    return text.split().count(word)
