@@ -32,6 +32,7 @@ jobs:
           python -m pip install --upgrade pip  # Upgrade pip to the latest version
           python -m pip install pytest  # Install pytest using python -m pip, which ensures it is installed in the correct environment
 
+      # Adjust the pytest command to run all tests in the 'tests' folder
       - name: Run tests with pytest
         run: |
-          pytest tests/test_main_functions.py --maxfail=1 --disable-warnings -v  # Run all tests
+          pytest tests/ --maxfail=1 --disable-warnings -v  # Run all tests in the 'tests' directory
